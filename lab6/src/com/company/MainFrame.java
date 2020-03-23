@@ -1,13 +1,23 @@
 package com.company;
-
-import javax.naming.ldap.Control;
 import javax.swing.*;
-
 import java.awt.*;
-
 import static javax.swing.SwingConstants.*;
 
+/**
+ * extends JFrame which is a high-level container that allows you
+ * to create a custom container
+ * the same is for the other existing classes in the package, besides the Main class.
+ * in this class the application interface is set, putting the elements at their place.
+ */
+
 public class MainFrame extends JFrame {
+    /**
+     * @param configPanel is a instance of ConfigPanel class, it retains the configurations  of the current page,
+     *                    it is situated at the NORTH of the page(up)
+     * @param controlPanel is a instance of ControlPanel class, it contains the actions which the application is capable of
+     * @param canvas it represents tha page that we draw on
+     */
+
     ConfigPanel configPanel;
     ControlPanel controlPanel;
     DrawingPanel canvas;
@@ -27,20 +37,11 @@ public class MainFrame extends JFrame {
 
         canvas = new DrawingPanel(this);
 
-
-
-        //arrange the components in the container(frame)
-        //JFrame uses a BorderLayout by default
-        this.add(canvas, CENTER); //this is BorderLayout.CENTER
+        this.add(canvas, CENTER);
 
         this.add(configPanel, BorderLayout.NORTH);
 
         this.add(controlPanel,BorderLayout.SOUTH);
-        //invoke the layout manager
         pack();
-    }
-
-    public MainFrame getMainFrame(){
-        return this;
     }
 }

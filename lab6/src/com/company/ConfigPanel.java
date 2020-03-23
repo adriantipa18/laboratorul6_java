@@ -1,16 +1,19 @@
 package com.company;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
 
+/**
+ * a class that deals with the option for drawing the canvas
+ */
 public class ConfigPanel extends  JPanel{
+    /**
+     * @param frame is the main frame, the frame that contains everything
+     * @param sidesField represents the sides of the shape that is going to be drawn
+     * @param colorCombo represents the list of diponible colors
+     */
     final MainFrame frame;
     JSpinner sidesField;
     JComboBox colorCombo;
+
 
     public ConfigPanel(MainFrame frame){
         this.frame=frame;
@@ -18,19 +21,21 @@ public class ConfigPanel extends  JPanel{
     }
 
     private void init(){
-        //create the label and the spinner
+
         JLabel sidesLabel = new JLabel("Number of sides:");
         sidesField = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        sidesField.setValue(6);//default number of sides
+        sidesField.setValue(3);
+        JLabel colorLabel = new JLabel("Color:");
+
 
         String[] colors={"Random","Red","Black"};
-        //create the colorCombo, containing the values: Random and Black
         colorCombo=new JComboBox(colors);
 
 
-        add(sidesLabel);//Jpanel uses FlowLayout by default
+        add(sidesLabel);
         add(sidesField);
+        add(colorLabel);
         add(colorCombo);
-        //add(colorCombo);
+
     }
 }

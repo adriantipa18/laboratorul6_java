@@ -1,5 +1,4 @@
 package com.company;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -7,20 +6,41 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+/**
+ * a class that permits to drawn a certain shapes on the canvas 
+ * the method createOffScreen() creates the background that is going to be painted
+ * the mothod init() draws at the coordonates of the action performed (click in this case)
+ * it uses the drawShape() method to draw shapes based on a random/selected color
+ * with a random size, with a selected number of sides
+ * the method update was overrided because if we didn't it would have had a different behaviour
+ * because it would have appealed the method from the parent class
+ * the other method that was overrided, the paintComponent() was overrided to paint what we need to, with the parameters that we set
+ * -->Draws as much of the specified image as has already been scaled to fit inside the specified rectangle.<-- the usage of the paintComponent
+ */
+
 public class DrawingPanel extends JPanel {
+    /**
+     * @param frame the main frame
+     * @param W the weight of the page
+     * @param H the height of the page
+     * @param image the background image, basically the canvas
+     * @param graphics a graphics2D component that allows the drawing of certain shapes based on certain specifications
+     *                 in that specification, the color may be random or selected between red or black
+     *                 the dimension is random
+     *                 and the shape may be set by setting the number of sides of the shape
+     */
     final MainFrame frame;
     final static int W = 800, H=600;
 
-    BufferedImage image; //the offscreen image
-    Graphics2D graphics; //the tools needed to draw in the image
-
+    BufferedImage image;
+    Graphics2D graphics;
     public DrawingPanel(MainFrame frame){
         this.frame= frame;
-        createOffscreenImage();
+        createOffScreenImage();
         init();
     }
 
-    void createOffscreenImage(){
+    void createOffScreenImage(){
         image= new BufferedImage(W,H,BufferedImage.TYPE_INT_ARGB);
         graphics = image.createGraphics();
         graphics.setColor(Color.WHITE);
@@ -37,7 +57,6 @@ public class DrawingPanel extends JPanel {
             }
         });
     }
-
     private void drawShape(int x, int y){
         Random rand=new Random();
         int radius=rand.nextInt(100);
