@@ -23,10 +23,14 @@ public class ConfigPanel extends  JPanel{
         sidesField = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
         sidesField.setValue(6);//default number of sides
 
+        String[] colors={"Random","Red","Black"};
         //create the colorCombo, containing the values: Random and Black
+        colorCombo=new JComboBox(colors);
+
 
         add(sidesLabel);//Jpanel uses FlowLayout by default
         add(sidesField);
+        add(colorCombo);
         //add(colorCombo);
     }
 }

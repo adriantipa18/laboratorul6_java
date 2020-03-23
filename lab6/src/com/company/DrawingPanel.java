@@ -20,7 +20,7 @@ public class DrawingPanel extends JPanel {
         init();
     }
 
-    private void createOffscreenImage(){
+    void createOffscreenImage(){
         image= new BufferedImage(W,H,BufferedImage.TYPE_INT_ARGB);
         graphics = image.createGraphics();
         graphics.setColor(Color.WHITE);
@@ -39,13 +39,25 @@ public class DrawingPanel extends JPanel {
     }
 
     private void drawShape(int x, int y){
-        int transparency=150;
         Random rand=new Random();
-        int radius=rand.nextInt(x);
-        int sides = frame.configPanel.sidesField.getComponentCount();
-        Color color=new Color( rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), transparency);
-        graphics.setColor(color);
+        int radius=rand.nextInt(100);
+        int sides = (int)frame.configPanel.sidesField.getValue();
+        if(frame.configPanel.colorCombo.getSelectedItem()!=null)
+        {
+            if(frame.configPanel.colorCombo.getSelectedItem().equals("Red")){
+                graphics.setColor(Color.RED);
+            }
+            else
+                if(frame.configPanel.colorCombo.getSelectedItem().equals("Black")){
+                graphics.setColor(Color.BLACK);
+            }
+                else{
+                    Color color=new Color( rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), rand.nextInt(200));
+                    graphics.setColor(color);
+                }
+        }
         graphics.fill(new RegularPolygon(x, y, radius, sides));    }
+
 
     @Override
     public void update(Graphics g) {

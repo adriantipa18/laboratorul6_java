@@ -32,10 +32,15 @@ public class MainFrame extends JFrame {
         //arrange the components in the container(frame)
         //JFrame uses a BorderLayout by default
         this.add(canvas, CENTER); //this is BorderLayout.CENTER
+
         this.add(configPanel, BorderLayout.NORTH);
 
         this.add(controlPanel,BorderLayout.SOUTH);
         //invoke the layout manager
         pack();
+    }
+
+    public MainFrame getMainFrame(){
+        return this;
     }
 }
