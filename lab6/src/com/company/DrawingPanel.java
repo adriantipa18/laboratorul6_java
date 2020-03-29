@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -75,7 +76,25 @@ public class DrawingPanel extends JPanel {
                     graphics.setColor(color);
                 }
         }
-        graphics.fill(new RegularPolygon(x, y, radius, sides));    }
+        if(frame.shapePanel.shapesCombo.getSelectedItem().equals("circle")) {
+            graphics.fill(new NodeShape(x, y, radius));
+        }
+        else
+        if(frame.shapePanel.shapesCombo.getSelectedItem().equals("square")) {
+            graphics.fill(new RegularPolygon(x, y, radius, 4));
+        }
+        else
+        if(frame.shapePanel.shapesCombo.getSelectedItem().equals("triangle")) {
+            graphics.fill(new RegularPolygon(x, y, radius, 3));
+        }
+        else
+        if(frame.shapePanel.shapesCombo.getSelectedItem().equals("shape")) {
+            graphics.fill(new Arc2D.Double(x-60, y-20, 100, 100, 10, 140, Arc2D.CHORD) );
+        }
+        else
+            graphics.fill(new RegularPolygon(x, y, radius, sides));
+    }
+
 
 
     @Override

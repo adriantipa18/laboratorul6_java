@@ -21,6 +21,7 @@ public class MainFrame extends JFrame {
     ConfigPanel configPanel;
     ControlPanel controlPanel;
     DrawingPanel canvas;
+    ShapePanel shapePanel;
 
     public MainFrame(){
         super("My Drawing Application");
@@ -35,11 +36,15 @@ public class MainFrame extends JFrame {
 
         controlPanel= new com.company.ControlPanel(this);
 
+        shapePanel = new ShapePanel(this);
+
         canvas = new DrawingPanel(this);
 
         this.add(canvas, CENTER);
 
         this.add(configPanel, BorderLayout.NORTH);
+
+        this.add(shapePanel, BorderLayout.EAST);
 
         this.add(controlPanel,BorderLayout.SOUTH);
         pack();

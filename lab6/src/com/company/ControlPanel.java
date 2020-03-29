@@ -1,6 +1,7 @@
 package com.company;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -47,15 +48,35 @@ public class ControlPanel extends JPanel {
     }
     private void save(ActionEvent e) {
         try {
-            ImageIO.write(frame.canvas.image, "PNG", new File("./test.png"));
+            JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+            int returnValue = jfc.showOpenDialog(null);
+            // int returnValue = jfc.showSaveDialog(null);
+
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = jfc.getSelectedFile();
+                ImageIO.write(frame.canvas.image, "PNG",selectedFile);
+
+            }
         } catch (IOException ex) { System.err.println(ex); }
     }
 
     private void load(ActionEvent e){
-        BufferedImage image;
+        BufferedImage image = null;
         try {
-            image = ImageIO.read(new File("./test.png"));
+            JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+            int returnValue = jfc.showOpenDialog(null);
+            // int returnValue = jfc.showSaveDialog(null);
+
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = jfc.getSelectedFile();
+                image = ImageIO.read(selectedFile);
+
+            }
+
             this.frame.canvas.image = image;
+            assert this.frame.canvas.image != null;
             this.frame.canvas.graphics = this.frame.canvas.image.createGraphics();
             frame.canvas.validate();
             frame.canvas.repaint();

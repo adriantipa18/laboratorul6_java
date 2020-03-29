@@ -23,10 +23,10 @@ public class ConfigPanel extends  JPanel{
     private void init(){
 
         JLabel sidesLabel = new JLabel("Number of sides:");
-        sidesField = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
-        sidesField.setValue(3);
         JLabel colorLabel = new JLabel("Color:");
 
+        sidesField = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
+        sidesField.setValue(3);
 
         String[] colors={"Random","Red","Black"};
         colorCombo=new JComboBox(colors);
@@ -36,6 +36,8 @@ public class ConfigPanel extends  JPanel{
         add(sidesField);
         add(colorLabel);
         add(colorCombo);
+
+
 
     }
 }
