@@ -16,6 +16,7 @@ public class MainFrame extends JFrame {
      *                    it is situated at the NORTH of the page(up)
      * @param controlPanel is a instance of ControlPanel class, it contains the actions which the application is capable of
      * @param canvas it represents tha page that we draw on
+     * @param shapePanel represents the control panel that sets the shape to be drawn, if none is selected, it draws the shape with the number of selected sizes
      */
 
     ConfigPanel configPanel;
